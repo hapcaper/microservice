@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 8000
 eureka:
   instance:
     prefer-ip-address: true
@@ -9,12 +9,11 @@ eureka:
 
 spring:
   application:
-    name: article
+    name: user
   datasource:
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/coode
-
 mybatis:
   mapper-locations: classpath:mapper/*.xml

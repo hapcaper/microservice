@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microservice.user.dao.UserDAO">
+    <resultMap id="userVO" type="com.microservice.user.pojo.vo.UserVO">
+        <result column="id" property="id" />
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="gender" property="gender"/>
+    </resultMap>
+    <sql id="baseMapping">
+        u.id id,
+        u.name name,
+        u.age age,
+        u.gender gender
+    </sql>
+    <sql id="commonCond">
+
+    </sql>
+    <select id="findAll" resultType="com.microservice.user.pojo.vo.UserVO">
+      select <include refid="baseMapping"/>
+      from t_scd_user u
+    </select>
+</mapper>

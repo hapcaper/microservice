@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microservice.article.dao.ArticleDAO">
+    <sql id="baseMapping">
+        a.id id,
+        a.title title,
+        a.content content,
+        a.user_id userId
+    </sql>
+
+    <select id="findByUserId" resultType="com.microservice.article.pojo.vo.ArticleVO">
+        select
+        <include refid="baseMapping"/>
+        from t_scd_article a
+        where a.user_id = ${userId}
+    </select>
+</mapper>
