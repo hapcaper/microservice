@@ -1,3 +1,117 @@
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T092228.500.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T092036.200.txt
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T092031.200.txt
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T092005.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091956.200.txt
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091925.200.txt
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091901.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T091856.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T091809.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091804.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091749.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
+
+<> 2019-03-01T091737.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T091711.200.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T091524.500.json
+
+###
+
+GET http://user/user/getAllArticleByUserId/1
+
+###
+
+GET http://user/user/getAllArticleByUserId/1
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T091011.500.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T010617.500.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-01T010448.500.json
+
+###
+
+GET http://127.0.0.1:8000/user/getAllArticleByUserId/{userId}
+
+###
+
 GET http://127.0.0.1:8001/article/findByUserId/2
 
 <> 2019-02-28T101449.200.json

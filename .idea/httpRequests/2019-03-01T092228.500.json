@@ -1,0 +1,7 @@
+{
+  "timestamp": "2019-03-01T01:22:28.312+0000",
+  "status": 500,
+  "error": "Internal Server Error",
+  "message": "fallback method wasn't found: error([class java.lang.String])",
+  "path": "/user/getAllArticleByUserId/2"
+}

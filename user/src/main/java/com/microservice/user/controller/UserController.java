@@ -1,6 +1,7 @@
 package com.microservice.user.controller;
 
 import com.microservice.user.service.UserService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,15 @@ public class UserController {
 
 
     @RequestMapping("/getAllArticleByUserId/{userId}")
+    @HystrixCommand(fallbackMethod = "error")
     public Object getAllArticleByUserId(@PathVariable String userId) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("userId", 1);
-        List list = restTemplate.postForObject("http://127.0.0.1:8001/article/findByUserId/" + 1, null, List.class, map);
+
+        List list = restTemplate.postForObject("http://article/article/findByUserId/" + userId, null, List.class);
         return list;
+    }
+
+    public String error() {
+        return "error";
     }
 
 }
