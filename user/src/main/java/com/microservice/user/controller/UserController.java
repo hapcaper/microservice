@@ -31,14 +31,14 @@ public class UserController {
 
     @RequestMapping("/getAllArticleByUserId/{userId}")
     @HystrixCommand(fallbackMethod = "error")
-    public Object getAllArticleByUserId(@PathVariable String userId) {
+    public Object getAllArticleByUserId(@PathVariable Long userId) {
 
         List list = restTemplate.postForObject("http://article/article/findByUserId/" + userId, null, List.class);
         return list;
     }
 
-    public String error() {
-        return "error";
+    public Object error(Long userId) {
+        return userId;
     }
 
 }

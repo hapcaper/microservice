@@ -1,3 +1,47 @@
+GET http://localhost:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-03T113433.500.json
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-03T112950.200.txt
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-03T105248.200.txt
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-03T105109.200.txt
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/{userId}
+
+###
+
+GET http://localhost:8001/article/findByUserId/1
+
+<> 2019-03-03T103258.200.json
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/1
+
+<> 2019-03-03T103228.500.json
+
+###
+
+GET http://localhost:8000/user/getAllArticleByUserId/{userId}
+
+###
+
 GET http://127.0.0.1:8000/user/getAllArticleByUserId/2
 
 <> 2019-03-01T092228.500.json
