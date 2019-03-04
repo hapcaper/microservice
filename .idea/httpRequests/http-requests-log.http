@@ -1,3 +1,16 @@
+GET http://127.0.0.1:8000/actuator
+Accept: application/vnd.spring-boot.actuator.v2+json
+
+<> 2019-03-04T061159.200.json
+
+###
+
+POST http://127.0.0.1:8000/refresh
+
+<> 2019-03-04T052907.404.json
+
+###
+
 GET http://localhost:8000/user/getAllArticleByUserId/1
 
 <> 2019-03-03T113433.500.json
