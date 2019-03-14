@@ -1,6 +1,13 @@
-package com.microservice.article.service;
+package com.microservice.article.component;
 
-import javax.lang.model.util.Elements;
+import com.microservice.article.component.LzhHttpClient;
+import org.apache.commons.httpclient.*;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +26,7 @@ public class MyHttpTest {
         List<String> links = initSpider(domain);
         for (int i = 0; i < 1; i++) {
             final List<String> subLinks = links.subList(i, i + 1);
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    loop(subLinks);
-                }
-            };
+            Runnable runnable = () -> loop(subLinks);
             runnable.run();
         }
 
@@ -107,76 +109,4 @@ public class MyHttpTest {
         }
         return links;
     }
-}
-
-class LzhHttpClient {
-
-    private String url;
-    private Integer port;
-    private HttpProtocal protocal;
-    private HttpMethod httpMethod;
-
-    private HttpClient httpClient;
-
-
-    public enum HttpProtocal {
-        HTTP, HTTPS,
-    }
-
-    /**
-     * 默认访问百度 443
-     */
-    LzhHttpClient() {
-        this("http://www.baidu.com", 80);
-    }
-
-    public LzhHttpClient(String url, Integer port) {
-        this(url, port, HttpProtocal.HTTP);
-    }
-
-    public LzhHttpClient(String url, Integer port, HttpProtocal protocal) {
-        this(url, port, protocal, new GetMethod());
-    }
-
-    public LzhHttpClient(String url, Integer port, HttpProtocal protocal, HttpMethod httpMethod) {
-        this.url = url;
-        this.port = port;
-        this.protocal = protocal;
-        this.httpMethod = httpMethod;
-        init();
-
-    }
-
-    private void init() {
-        if (protocal == HttpProtocal.HTTP) {
-            try {
-                httpMethod.setURI(new HttpURL(url));
-            } catch (URIException e) {
-                e.printStackTrace();
-            }
-        } else if (protocal == HttpProtocal.HTTPS) {
-            try {
-                httpMethod.setURI(new HttpsURL(url));
-            } catch (URIException e) {
-                e.printStackTrace();
-            }
-        }
-        httpClient = new HttpClient();
-        httpClient.getHostConfiguration().setProxy("119.101.116.173",9999);
-    }
-
-    public String execute() {
-        StringBuilder responseBody = new StringBuilder();
-
-        try {
-            httpClient.executeMethod(httpMethod);
-            String s = new String(httpMethod.getResponseBody());
-            responseBody.append(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return responseBody.toString();
-    }
-
-
 }

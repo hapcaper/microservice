@@ -12,6 +12,10 @@
         select
         <include refid="baseMapping"/>
         from t_scd_article a
-        where a.user_id = ${userId}
+        where a.user_id = #{userId}
     </select>
+
+    <insert id="insert" parameterType="com.microservice.article.pojo.vo.ArticleVO">
+        insert into t_scd_article (title,content) value (#{title},#{content})
+    </insert>
 </mapper>
