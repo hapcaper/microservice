@@ -22,24 +22,24 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private RestTemplate restTemplate;
-    @Value("${clientParam.native-dev}")
-    private String clientParam;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private RestTemplate restTemplate;
+	@Value("${clientParam.native-dev}")
+	private String clientParam;
 
 
-    @RequestMapping("/getAllArticleByUserId/{userId}")
-    @HystrixCommand(fallbackMethod = "error")
-    public Object getAllArticleByUserId(@PathVariable Long userId) {
-        System.out.println("==="+clientParam);
-        List list = restTemplate.postForObject("http://article/article/findByUserId/" + userId, null, List.class);
-        return list;
-    }
+	@RequestMapping("/getAllArticleByUserId/{userId}")
+	@HystrixCommand(fallbackMethod = "error")
+	public Object getAllArticleByUserId(@PathVariable Long userId) {
+		System.out.println("===" + clientParam);
+		List list = restTemplate.postForObject("http://article/article/findByUserId/" + userId, null, List.class);
+		return list;
+	}
 
-    public Object error(Long userId) {
-        return userId;
-    }
+	public Object error(Long userId) {
+		return userId;
+	}
 
 }

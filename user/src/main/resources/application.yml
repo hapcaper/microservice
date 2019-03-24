@@ -12,8 +12,8 @@ spring:
     name: user
   datasource:
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://www.enricher.space:3306/coode
+    url: jdbc:mysql://188.131.233.41:3306/coode
 mybatis:
   mapper-locations: classpath:mapper/*.xml

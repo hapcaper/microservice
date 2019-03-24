@@ -30,4 +30,8 @@ public class ArticleService {
         return articleDAO.findByUserId(userId);
     }
 
+	public void insert(ArticleVO articleVO) {
+    	articleDAO.insert(articleVO);
+	}
+
 }
