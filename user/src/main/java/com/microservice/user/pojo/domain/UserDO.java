@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * Description:
  *
- * @author 李自豪（zihao.li01@ucarinc.com）
+ * @author 李自豪（lizihaojlex@gmail.com）
  * @since 2019-02-27
  */
 public class UserDO {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Description:
  *
- * @author 李自豪（zihao.li01@ucarinc.com）
+ * @author 李自豪（lizihaojlex@gmail.com）
  * @since 2019-02-18
  */
 public class ArticleDO implements Serializable {
