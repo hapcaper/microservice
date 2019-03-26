@@ -37,10 +37,11 @@ public class ArticleController {
     }
 
     @RequestMapping("/jianshuSpiderStart")
-	public Object jianshuSpiderStart(String startUrl) {
-		if (startUrl == null || startUrl.isEmpty()) {
-			startUrl = "https://www.jianshu.com/p/49d8baf5fb99";
+	public Object jianshuSpiderStart(String url) {
+		if (url == null || url.isEmpty()) {
+			url = "https://www.jianshu.com/p/49d8baf5fb99";
 		}
+		jianShuSpiderCallable.setStartUrl(url);
 		Future submit = scheduledExecutorService.submit(jianShuSpiderCallable);
 		futureMap.put(submit.hashCode(), submit);
 		return submit.hashCode()+" 开始爬简书";
