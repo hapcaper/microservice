@@ -5,14 +5,18 @@ import com.microservice.article.component.PatternConfig;
 import com.microservice.article.component.Spider;
 import com.microservice.article.pojo.vo.ArticleVO;
 import com.microservice.article.service.ArticleService;
-import org.apache.commons.lang.math.RandomUtils;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.Callable;
 
-public class SpiderCallable implements Callable {
+@Component
+public class JianShuSpiderCallable implements Callable {
 
+    @Resource
     private ArticleService articleService;
     private Spider spider;
     private String domain = "https://www.jianshu.com";
@@ -20,8 +24,7 @@ public class SpiderCallable implements Callable {
 
 
 
-    public SpiderCallable(ArticleService articleService,String startUrl) {
-        this.articleService = articleService;
+    public JianShuSpiderCallable(String startUrl) {
         this.startUrl = startUrl;
         this.spider = new MySpider(new PatternConfig("body>div.note>div.post>div.article>h1"
                 , "body>div.note>div.post>div.article>div.show-content>div"

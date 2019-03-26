@@ -71,7 +71,7 @@ public class LzhHttpClient {
 			httpClient.executeMethod(httpMethod);
 			String s = new String(httpMethod.getResponseBody());
 			responseBody.append(s);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return responseBody.toString();

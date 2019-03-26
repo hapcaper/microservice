@@ -1,18 +1,14 @@
 package com.microservice.article.restcontroller;
 
-import com.microservice.article.callable.SpiderCallable;
-import com.microservice.article.component.MySpider;
-import com.microservice.article.component.PatternConfig;
-import com.microservice.article.component.Spider;
-import com.microservice.article.pojo.vo.ArticleVO;
+import com.microservice.article.callable.JianShuSpiderCallable;
 import com.microservice.article.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -29,10 +25,12 @@ import java.util.concurrent.ScheduledExecutorService;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
-//	private String domain = "https://www.jianshu.com";
+    @Autowired
+	private JianShuSpiderCallable jianShuSpiderCallable;
 	private Map<Integer, Future> futureMap = new HashMap<>();
 	private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(4);
-	private SpiderCallable spiderCallable = new SpiderCallable(articleService, "https://www.jianshu.com/p/49d8baf5fb99");
+
+
     @RequestMapping("/findByUserId/{userId}")
     public Object findByUserId(@PathVariable("userId") Long userId) {
         return articleService.findByUserId(userId);
@@ -43,8 +41,7 @@ public class ArticleController {
 		if (startUrl == null || startUrl.isEmpty()) {
 			startUrl = "https://www.jianshu.com/p/49d8baf5fb99";
 		}
-		Future submit = scheduledExecutorService.submit(new SpiderCallable(articleService,startUrl));
-//		Future submit = scheduledExecutorService.submit(spiderCallable);
+		Future submit = scheduledExecutorService.submit(jianShuSpiderCallable);
 		futureMap.put(submit.hashCode(), submit);
 		return submit.hashCode()+" 开始爬简书";
 	}
