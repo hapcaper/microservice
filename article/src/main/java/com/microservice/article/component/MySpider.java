@@ -1,15 +1,12 @@
 package com.microservice.article.component;
 
-import com.netflix.ribbon.proxy.annotation.Http;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author ASUS

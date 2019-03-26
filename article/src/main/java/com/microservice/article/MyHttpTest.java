@@ -1,4 +1,4 @@
-package com.microservice.article.component;
+package com.microservice.article;
 
 import com.microservice.article.component.LzhHttpClient;
 import org.apache.commons.httpclient.*;

@@ -24,6 +24,7 @@ public class LzhHttpClient {
 
 	/**
 	 * 默认访问百度 443
+	 * ??我当初为什么要默认百度呢？？能爬百度么？？
 	 */
 	LzhHttpClient() {
 		this("http://www.baidu.com", 80);

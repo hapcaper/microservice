@@ -33,13 +33,12 @@ public class UserController {
 	@RequestMapping("/getAllArticleByUserId/{userId}")
 	@HystrixCommand(fallbackMethod = "error")
 	public Object getAllArticleByUserId(@PathVariable Long userId) {
-		System.out.println("===" + clientParam);
 		List list = restTemplate.postForObject("http://article/article/findByUserId/" + userId, null, List.class);
 		return list;
 	}
 
 	public Object error(Long userId) {
-		return userId;
+		return "该id查询错误 : "+userId;
 	}
 
 }
