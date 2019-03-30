@@ -11,6 +11,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Description:
@@ -48,7 +49,7 @@ public class MyHttpTest {
         // title
         //body > div.note > div.post > div.article > h1
         System.out.println(url);
-        LzhHttpClient lzhHttpClient = new LzhHttpClient(url, 443, LzhHttpClient.HttpProtocal.HTTPS);
+        LzhHttpClient lzhHttpClient = new LzhHttpClient(url, 443, LzhHttpClient.HttpProtocal.HTTPS, new Stack<>());
         Document document = Jsoup.parse(lzhHttpClient.execute());
         Elements title = document.select("body").select("div.note").select("div.post")
                 .select("div.article").select("h1");
@@ -90,7 +91,7 @@ public class MyHttpTest {
     }
 
     private static List<String> initSpider(String url) {
-        LzhHttpClient lzhHttpClient = new LzhHttpClient(url, 443, LzhHttpClient.HttpProtocal.HTTPS);
+        LzhHttpClient lzhHttpClient = new LzhHttpClient(url, 443, LzhHttpClient.HttpProtocal.HTTPS, new Stack<>());
 
         Document document = Jsoup.parse(lzhHttpClient.execute());
 

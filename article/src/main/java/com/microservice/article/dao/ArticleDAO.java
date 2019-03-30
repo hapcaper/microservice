@@ -18,4 +18,5 @@ public interface ArticleDAO {
     List<ArticleVO> findByUserId(@Param("userId") Long userId);
 
 	void insert(ArticleVO articleVO);
+
 }

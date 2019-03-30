@@ -4,6 +4,7 @@ package com.microservice.article.component;
  * @author ASUS
  * @date 2019/3/6
  */
+@Deprecated
 public class PatternConfig {
 
 	private String titlePattern;

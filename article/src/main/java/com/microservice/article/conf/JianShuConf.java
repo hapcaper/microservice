@@ -1,10 +1,11 @@
 package com.microservice.article.conf;
 
-import com.microservice.article.component.MySpider;
 import com.microservice.article.component.PatternConfig;
-import com.microservice.article.component.Spider;
+import com.microservice.article.jianshuspider.JianShuPattern;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Stack;
 
 @SpringBootConfiguration
 public class JianShuConf {
@@ -15,10 +16,22 @@ public class JianShuConf {
 //    }
 
     @Bean
-    public Spider jianshuSpider() {
-        return new MySpider(new PatternConfig("body>div.note>div.post>div.article>h1"
+    public PatternConfig patternConfig() {
+        return new PatternConfig("body>div.note>div.post>div.article>h1"
                 , "body>div.note>div.post>div.article>div.show-content>div"
-                , "body>div.note-bottom>div.seo-recommended-notes>div.note>a.title"));
+                , "body>div.note-bottom>div.seo-recommended-notes>div.note>a.title");
+    }
+
+    @Bean
+    public Stack<String> proxyIpStack() {
+        return new Stack<>();
+    }
+
+    @Bean
+    public JianShuPattern jianShuPattern() {
+        return new JianShuPattern("body>div.note>div.post>div.article>h1"
+                , "body>div.note>div.post>div.article>div.show-content>div"
+                , "body>div.note-bottom>div.seo-recommended-notes>div.note>a.title");
     }
 
 }

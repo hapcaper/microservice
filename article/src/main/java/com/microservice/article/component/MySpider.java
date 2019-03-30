@@ -1,5 +1,6 @@
 package com.microservice.article.component;
 
+import org.apache.commons.httpclient.URIException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,29 +8,25 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author ASUS
  * @date 2019/3/6
  */
+@Deprecated
 public class MySpider implements Spider {
 
 	private PatternConfig patternConfig;
 
 	private Document document;
 
-	public MySpider(PatternConfig patternConfig) {
+	private LzhHttpClient lzhHttpClient;
+
+	public MySpider(PatternConfig patternConfig, Stack<String> proxyIpStack) {
+		this.lzhHttpClient = new LzhHttpClient("", 443, LzhHttpClient.HttpProtocal.HTTPS,proxyIpStack);
 		this.patternConfig = patternConfig;
 	}
-
-	public PatternConfig getPatternConfig() {
-		return patternConfig;
-	}
-
-	public void setPatternConfig(PatternConfig patternConfig) {
-		this.patternConfig = patternConfig;
-	}
-
 
 	/**
 	 * titlePattern eg : body > div.note > div.post > div.article > h1
@@ -49,9 +46,16 @@ public class MySpider implements Spider {
 	}
 
 	@Override
-	public void fetch(String targetUrl) {
-		LzhHttpClient httpClient = new LzhHttpClient(targetUrl, 443, LzhHttpClient.HttpProtocal.HTTPS);
-		this.document = Jsoup.parse(httpClient.execute());
+	public void fetch(String targetUrl) throws URIException {
+		lzhHttpClient.setUrl(targetUrl);
+		String executeStr = lzhHttpClient.execute();
+		if (executeStr == null) {
+			System.out.println("爬取失败");
+		} else {
+			System.out.println("爬取成功");
+		}
+		assert executeStr != null;
+		this.document = Jsoup.parse(executeStr);
 	}
 
 	@Override
@@ -88,5 +92,13 @@ public class MySpider implements Spider {
 	@Override
 	public String getAllBody() {
 		return document.html();
+	}
+
+	public LzhHttpClient getLzhHttpClient() {
+		return lzhHttpClient;
+	}
+
+	public void setLzhHttpClient(LzhHttpClient lzhHttpClient) {
+		this.lzhHttpClient = lzhHttpClient;
 	}
 }
