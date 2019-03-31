@@ -1,7 +1,8 @@
 package com.microservice.article.restcontroller;
 
+import com.microservice.article.pojo.domain.RuleDO;
 import com.microservice.article.runable.JianShuSpiderRunnable;
-import com.microservice.article.runable.MySpiderRunable;
+import com.microservice.article.runable.MySpiderRunnable;
 import com.microservice.article.service.ArticleService;
 import com.microservice.article.jianshuspider.JianShuPattern;
 import com.microservice.article.jianshuspider.JianShuSpider;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -150,8 +149,21 @@ public class ArticleController {
 	}
 
 	private Future MySpiderStart(String url) {
+		List<RuleDO> rules = new ArrayList<>();
+		RuleDO title = new RuleDO();
+		title.setName("title");
+		title.setPattern("body>div.note>div.post>div.article>h1");
+		rules.add(title);
+		RuleDO content = new RuleDO();
+		content.setName("content");
+		content.setPattern("body>div.note>div.post>div.article>div.show-content>div");
+		rules.add(content);
+		RuleDO urlrule = new RuleDO();
+		urlrule.setName("url");//必须是url
+		urlrule.setPattern("body>div.note-bottom>div.seo-recommended-notes>div.note>a.title");
+		rules.add(urlrule);
 		SpiderHttpClientV2 httpClientV2 = new SpiderHttpClientV2(443, proxyIpStack, SpiderHttpClientV2.HttpProtocol.HTTPS, true);
-		MySpiderRunable mySpiderRunable = new MySpiderRunable(httpClientV2, null, url);
-		return scheduledExecutorService.submit(mySpiderRunable);
+		MySpiderRunnable mySpiderRunnable = new MySpiderRunnable(httpClientV2, rules, url);
+		return scheduledExecutorService.submit(mySpiderRunnable);
 	}
 }

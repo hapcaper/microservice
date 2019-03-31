@@ -19,4 +19,5 @@ public interface ArticleDAO {
 
 	void insert(ArticleVO articleVO);
 
+
 }

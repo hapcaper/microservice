@@ -8,20 +8,20 @@ import com.microservice.article.spiderV2.SpiderHttpClientV2;
 import java.util.HashMap;
 import java.util.List;
 
-public class MySpiderRunable implements Runnable {
+public class MySpiderRunnable implements Runnable {
     private SpiderHttpClientV2 httpClient;
     private Resolver resolver;
     private List<RuleDO> rules;
 
-    HashMap<String, String> map = new HashMap<>();
+    HashMap<String, String> map = new HashMap<>();//考虑用对象代替
 
     private String startUrl = "www.jianshu.com";
 
-    public MySpiderRunable(SpiderHttpClientV2 httpClient, List<RuleDO> rules, String startUrl) {
+    public MySpiderRunnable(SpiderHttpClientV2 httpClient, List<RuleDO> rules, String startUrl) {
         this(httpClient, new ResolverImpl(), rules, startUrl);
     }
 
-    public MySpiderRunable(SpiderHttpClientV2 httpClient, Resolver resolver, List<RuleDO> rules, String startUrl) {
+    public MySpiderRunnable(SpiderHttpClientV2 httpClient, Resolver resolver, List<RuleDO> rules, String startUrl) {
         this.httpClient = httpClient;
         this.resolver = resolver;
         this.rules = rules;

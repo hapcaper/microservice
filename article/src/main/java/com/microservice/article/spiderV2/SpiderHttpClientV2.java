@@ -77,18 +77,25 @@ public class SpiderHttpClientV2 {
         } catch (ConnectException e) {
             System.out.println("请求异常1");
             if (proxy) {
-                loadProxy();
+	            System.out.println("切换新代理进行继续进行爬取");
+	            loadProxy();
                 return execute(url);
             }else e.printStackTrace();
         } catch (HttpException e) {
             System.out.println("请求异常2");
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+	        System.out.println("请求异常io");
+	        if (proxy) {
+		        System.out.println("切换新代理进行继续进行爬取");
+		        loadProxy();
+		        return execute(url);
+	        }else e.printStackTrace();
         } catch (Exception e) {
             System.out.println("请求异常3");
             if (proxy) {
-                loadProxy();
+	            System.out.println("切换新代理进行继续进行爬取");
+	            loadProxy();
                 return execute(url);
             }else e.printStackTrace();
         }
