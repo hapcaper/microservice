@@ -1,6 +1,5 @@
 package com.microservice.article.conf;
 
-import com.microservice.article.component.PatternConfig;
 import com.microservice.article.jianshuspider.JianShuPattern;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +14,6 @@ public class JianShuConf {
 //        return "https://www.jianshu.com/p/49d8baf5fb99";
 //    }
 
-    @Bean
-    public PatternConfig patternConfig() {
-        return new PatternConfig("body>div.note>div.post>div.article>h1"
-                , "body>div.note>div.post>div.article>div.show-content>div"
-                , "body>div.note-bottom>div.seo-recommended-notes>div.note>a.title");
-    }
 
     @Bean
     public Stack<String> proxyIpStack() {

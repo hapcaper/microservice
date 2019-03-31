@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microservice.article.dao.RuleGroupDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.microservice.article.pojo.vo.RuleGroupVO">
+        <result column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        id,
+        `name`,
+        remark
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO rule_group (
+            id,
+            `name`,
+            remark
+        ) VALUES (
+            #{ruleGroupVO.id,jdbcType=BIGINT},
+            #{ruleGroupVO.name,jdbcType=VARCHAR},
+            #{ruleGroupVO.remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="ruleGroupVO.id">
+        INSERT INTO rule_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ruleGroupVO.id!=null"> id,</if>
+            <if test="ruleGroupVO.name!=null"> `name`,</if>
+            <if test="ruleGroupVO.remark!=null"> remark,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ruleGroupVO.id!=null">#{ruleGroupVO.id,jdbcType=BIGINT},
+            </if>
+            <if test="ruleGroupVO.name!=null">#{ruleGroupVO.name,jdbcType=VARCHAR},
+            </if>
+            <if test="ruleGroupVO.remark!=null">#{ruleGroupVO.remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO rule_group (
+            id,
+            `name`,
+            remark
+        )VALUES
+        <foreach collection="ruleGroupVOs" item="ruleGroupVO" index="index" separator=",">
+            (
+            #{ruleGroupVO.id,jdbcType=BIGINT},
+            #{ruleGroupVO.name,jdbcType=VARCHAR},
+            #{ruleGroupVO.remark,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKeySelective">
+        UPDATE rule_group
+        <set>
+            <if test="ruleGroupVO.name != null"> `name`= #{ruleGroupVO.name,jdbcType=VARCHAR},</if>
+            <if test="ruleGroupVO.remark != null"> remark= #{ruleGroupVO.remark,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE id = #{ruleGroupVO.id,jdbcType=BIGINT}
+    </update>
+
+    <select id="findByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from rule_group
+        where name = #{name}
+    </select>
+
+
+</mapper>
+

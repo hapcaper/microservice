@@ -2,14 +2,16 @@ package com.microservice.article.pojo.domain;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("rule")
+@Alias("ruleDO")
 public class RuleDO {
 
-    private Long id;
+    protected Long id;
 
-    private String name;
+    protected String name;
 
-    private String pattern;
+    protected String pattern;
+
+    protected Long ruleGroupId;
 
     public Long getId() {
         return id;
@@ -33,5 +35,13 @@ public class RuleDO {
 
     public void setPattern(String pattern) {
         this.pattern = pattern;
+    }
+
+    public Long getRuleGroupId() {
+        return ruleGroupId;
+    }
+
+    public void setRuleGroupId(Long ruleGroupId) {
+        this.ruleGroupId = ruleGroupId;
     }
 }
